@@ -51,8 +51,12 @@ export class Ship extends ex.Actor {
       div.innerHTML = `
         <div style="font: bold 64px sans-serif; color: red;">GAME OVER</div>
         <img src="${gameOverImgUrl}" style="width: 392px; height: 268px;">
-        <div style="font: 24px sans-serif; color: white;">Tap or press ENTER to play again</div>
       `;
+      const btn = document.createElement('button');
+      btn.textContent = 'Play Again';
+      btn.style.cssText = 'font: bold 20px sans-serif; color: white; background: #222; border: 2px solid white; border-radius: 8px; padding: 12px 32px; cursor: pointer; pointer-events: auto;';
+      btn.onclick = () => gameState.restartCallback?.();
+      div.appendChild(btn);
       document.body.appendChild(div);
       gameState.gameOverDiv = div;
     }

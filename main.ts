@@ -85,9 +85,7 @@ game.start(loader).then(() => {
     gameState.pointerX = undefined;
   });
 
-  document.addEventListener('pointerup', () => {
-    if (gameState.gameOver) startGame();
-  });
+  gameState.restartCallback = startGame;
 
   let swallowNextEnterKeyup = false;
   document.addEventListener('keydown', (e) => {

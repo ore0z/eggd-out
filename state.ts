@@ -9,4 +9,5 @@ export const gameState = {
   gameOverDiv: null as HTMLDivElement | null,
   pointerDown: false,
   pointerX: undefined as number | undefined,
+  restartCallback: null as (() => void) | null,
 };
