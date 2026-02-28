@@ -31,6 +31,8 @@ function startGame() {
   gameState.gameOver = false;
   gameState.score = 0;
   gameState.elapsed = 0;
+  gameState.pointerDown = false;
+  gameState.pointerX = undefined;
 
   gameState.gameOverDiv?.remove();
   gameState.gameOverDiv = null;
@@ -67,6 +69,24 @@ game.start(loader).then(() => {
 
   game.input.keyboard.on('press', (evt) => {
     if (evt.key === ex.Keys.Space) (gameState.ship as Ship)?.shoot();
+  });
+
+  game.input.pointers.primary.on('down', (evt) => {
+    if (gameState.gameOver) return;
+    gameState.pointerDown = true;
+    gameState.pointerX = evt.worldPos.x;
+    (gameState.ship as Ship)?.shoot();
+  });
+  game.input.pointers.primary.on('move', (evt) => {
+    if (gameState.pointerDown) gameState.pointerX = evt.worldPos.x;
+  });
+  game.input.pointers.primary.on('up', () => {
+    gameState.pointerDown = false;
+    gameState.pointerX = undefined;
+  });
+
+  document.addEventListener('pointerup', () => {
+    if (gameState.gameOver) startGame();
   });
 
   let swallowNextEnterKeyup = false;

@@ -51,7 +51,7 @@ export class Ship extends ex.Actor {
       div.innerHTML = `
         <div style="font: bold 64px sans-serif; color: red;">GAME OVER</div>
         <img src="${gameOverImgUrl}" style="width: 392px; height: 268px;">
-        <div style="font: 24px sans-serif; color: white;">Press ENTER to play again</div>
+        <div style="font: 24px sans-serif; color: white;">Tap or press ENTER to play again</div>
       `;
       document.body.appendChild(div);
       gameState.gameOverDiv = div;
@@ -62,11 +62,15 @@ export class Ship extends ex.Actor {
     if (gameState.gameOver) return;
     gameState.elapsed += engine.clock.elapsed() / 1000;
     this.vel = ex.vec(0, 0);
-    if (engine.input.keyboard.isHeld(ex.Keys.Left)) {
-      this.vel.x = -this.speed;
-    }
-    if (engine.input.keyboard.isHeld(ex.Keys.Right)) {
-      this.vel.x = this.speed;
+    if (gameState.pointerDown && gameState.pointerX !== undefined) {
+      this.pos.x = gameState.pointerX;
+    } else {
+      if (engine.input.keyboard.isHeld(ex.Keys.Left)) {
+        this.vel.x = -this.speed;
+      }
+      if (engine.input.keyboard.isHeld(ex.Keys.Right)) {
+        this.vel.x = this.speed;
+      }
     }
     this.pos.x = ex.clamp(this.pos.x, this.width / 2, engine.drawWidth - this.width / 2);
   }

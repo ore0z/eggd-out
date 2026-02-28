@@ -7,4 +7,6 @@ export const gameState = {
   scoreLabel: null as ex.Label | null,
   ship: null as ex.Actor | null,
   gameOverDiv: null as HTMLDivElement | null,
+  pointerDown: false,
+  pointerX: undefined as number | undefined,
 };
