@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node"
+  },
+  "include": ["src", "src/custom.d.ts"]
+}
+

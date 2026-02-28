@@ -1,0 +1,14 @@
+{
+  "name": "eggd-out",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "excalibur": "^0.30.3",
+    "parcel": "^2.14.0"
+  }
+}
