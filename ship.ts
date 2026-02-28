@@ -54,6 +54,7 @@ export class Ship extends ex.Actor {
       `;
       const btn = document.createElement('button');
       btn.textContent = 'Play Again';
+      btn.tabIndex = -1;
       btn.style.cssText = 'font: bold 20px sans-serif; color: white; background: #222; border: 2px solid white; border-radius: 8px; padding: 12px 32px; cursor: pointer; pointer-events: auto;';
       btn.onclick = () => gameState.restartCallback?.();
       div.appendChild(btn);
