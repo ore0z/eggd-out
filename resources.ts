@@ -1,5 +1,5 @@
 import * as ex from 'excalibur';
-import laserUrl from 'url:./laser.wav';
+import laserUrl from 'url:./assets/laser.wav';
 import shipUrl from 'url:./assets/ship.png';
 import ship0Url from 'url:./assets/ship0.png';
 import ship1Url from 'url:./assets/ship1.png';
