@@ -63,7 +63,8 @@ export class Ship extends ex.Actor {
     gameState.elapsed += engine.clock.elapsed() / 1000;
     this.vel = ex.vec(0, 0);
     if (gameState.pointerDown && gameState.pointerX !== undefined) {
-      this.pos.x = gameState.pointerX;
+      const dx = gameState.pointerX - this.pos.x;
+      this.vel.x = ex.clamp(dx * 8, -this.speed, this.speed);
     } else {
       if (engine.input.keyboard.isHeld(ex.Keys.Left)) {
         this.vel.x = -this.speed;
