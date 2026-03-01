@@ -1,28 +1,22 @@
 import * as ex from 'excalibur';
 import { explosionSound } from './resources';
 
+export class EggSplat extends ex.Actor {
+  constructor(pos: ex.Vector) {
+    super({ pos: pos.clone(), z: 1 });
+  }
+  override onInitialize() {
+    this.actions.delay(1000).fade(0, 1000).die();
+    this.graphics.onPostDraw = (ctx: ex.ExcaliburGraphicsContext) => {
+      ctx.drawCircle(ex.vec(0, 8), 20, ex.Color.White);
+      ctx.drawCircle(ex.vec(-10, -4), 14, ex.Color.White);
+      ctx.drawCircle(ex.vec(10, -2), 12, ex.Color.White);
+      ctx.drawCircle(ex.vec(0, 4), 10, ex.Color.fromHex('#cc9900'));
+    };
+  }
+}
+
 export function spawnExplosion(pos: ex.Vector, scene: ex.Scene) {
-  const emitter = new ex.ParticleEmitter({
-    pos: pos.clone(),
-    emitterType: ex.EmitterType.Circle,
-    radius: 5,
-    minVel: 100,
-    maxVel: 300,
-    minAngle: 0,
-    maxAngle: Math.PI * 2,
-    emitRate: 300,
-    opacity: 1,
-    fadeFlag: true,
-    particleLife: 250,
-    minSize: 2,
-    maxSize: 8,
-    startSize: 0,
-    endSize: 0,
-    beginColor: ex.Color.Yellow,
-    endColor: ex.Color.Red,
-    isEmitting: true,
-  });
-  scene.add(emitter);
-  setTimeout(() => emitter.kill(), 80);
+  scene.add(new EggSplat(pos));
   explosionSound.play().catch(() => {});
 }

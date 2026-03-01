@@ -37,6 +37,13 @@ export class Ship extends ex.Actor {
       this.kill();
       bgMusic.stop();
 
+      if (gameState.score > gameState.highScore) {
+        gameState.highScore = gameState.score;
+        localStorage.setItem('highScore', String(gameState.highScore));
+        gameState.highScoreLabel!.text = `Best: ${gameState.highScore}`;
+      }
+
+      const isNewBest = gameState.score === gameState.highScore && gameState.score > 0;
       const div = document.createElement('div');
       div.style.cssText = `
         position: fixed;
@@ -51,6 +58,8 @@ export class Ship extends ex.Actor {
       div.innerHTML = `
         <div style="font: bold 64px sans-serif; color: red;">GAME OVER</div>
         <img src="${gameOverImgUrl}" style="width: 392px; height: 268px;">
+        <div style="font: bold 28px sans-serif; color: white;">Score: ${gameState.score}</div>
+        <div style="font: 22px sans-serif; color: ${isNewBest ? 'gold' : 'white'};">${isNewBest ? '★ New Best: ' : 'Best: '}${gameState.highScore}</div>
       `;
       const btn = document.createElement('button');
       btn.textContent = 'Play Again';

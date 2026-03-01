@@ -4,6 +4,7 @@ import { bgMusic } from './resources';
 import { gameState } from './state';
 import { Background } from './background';
 import { Enemy } from './enemy';
+import { EggSplat } from './explosion';
 import { PowerEgg } from './power-egg';
 import { Laser } from './laser';
 import { Ship } from './ship';
@@ -50,7 +51,7 @@ function startGame() {
   gameState.gameOverDiv = null;
 
   for (const actor of game.currentScene.actors) {
-    if (actor instanceof Enemy || actor instanceof PowerEgg || actor instanceof Laser || actor instanceof Ship || actor instanceof Background) {
+    if (actor instanceof Enemy || actor instanceof EggSplat || actor instanceof PowerEgg || actor instanceof Laser || actor instanceof Ship || actor instanceof Background) {
       actor.kill();
     }
   }
@@ -77,6 +78,16 @@ game.start(loader).then(() => {
     anchor: ex.vec(0, 0),
   });
   game.add(gameState.scoreLabel);
+
+  gameState.highScoreLabel = new ex.Label({
+    text: `Best: ${gameState.highScore}`,
+    x: 10,
+    y: 40,
+    font: new ex.Font({ size: 24 }),
+    color: ex.Color.White,
+    anchor: ex.vec(0, 0),
+  });
+  game.add(gameState.highScoreLabel);
 
   startGame();
 
