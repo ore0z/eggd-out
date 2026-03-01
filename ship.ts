@@ -36,6 +36,7 @@ export class Ship extends ex.Actor {
       gameState.gameOver = true;
       this.kill();
       bgMusic.stop();
+      document.body.style.cursor = 'default';
 
       if (gameState.score > gameState.highScore) {
         gameState.highScore = gameState.score;

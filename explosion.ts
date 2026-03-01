@@ -3,7 +3,7 @@ import { explosionSound } from './resources';
 
 export class EggSplat extends ex.Actor {
   constructor(pos: ex.Vector) {
-    super({ pos: pos.clone(), z: 1 });
+    super({ pos: pos.clone(), vel: ex.vec(0, 75), z: 1 });
   }
   override onInitialize() {
     this.actions.delay(1000).fade(0, 1000).die();

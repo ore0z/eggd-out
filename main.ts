@@ -56,6 +56,7 @@ function startGame() {
     }
   }
 
+  document.body.style.cursor = 'none';
   gameState.scoreLabel!.text = 'Score: 0';
   bgMusic.loop = true;
   bgMusic.play();

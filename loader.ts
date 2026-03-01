@@ -18,7 +18,7 @@ loader.startButtonFactory = () => {
 
   setTimeout(() => {
     const hint = document.createElement('p');
-    hint.textContent = 'Press SPACE to pew!';
+    hint.textContent = 'tap or press space to pew';
     hint.style.cssText = 'color:white;font-family:sans-serif;font-size:18px;margin:12px 0 0;text-align:center';
     button.parentElement?.appendChild(hint);
   }, 0);
