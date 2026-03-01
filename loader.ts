@@ -1,10 +1,10 @@
 import * as ex from 'excalibur';
-import { laserSound, bgMusic, explosionSound, shipImage, ship0Image, ship1Image, bgImage, eggImages, logoUrl } from './resources';
+import { laserSound, bgMusic, explosionSound, shipImage, ship0Image, ship1Image, bgImage, eggImages, powerEggImage, logoUrl } from './resources';
 
 export const loader = new ex.Loader([
   laserSound, bgMusic, explosionSound,
   shipImage, ship0Image, ship1Image,
-  bgImage, ...eggImages,
+  bgImage, ...eggImages, powerEggImage,
 ]);
 
 loader.logo = logoUrl;

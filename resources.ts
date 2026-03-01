@@ -7,6 +7,7 @@ import bgUrl from 'url:./assets/play-bg.jpg';
 import eggRedUrl from 'url:./assets/egg-red.png';
 import eggGreenUrl from 'url:./assets/egg-green.png';
 import eggGoldUrl from 'url:./assets/egg-gold.png';
+import powerEggUrl from 'url:./assets/power-egg.png';
 import bgMusicUrl from 'url:./assets/background.wav';
 import explosionUrl from 'url:./assets/explosion.wav';
 
@@ -26,3 +27,4 @@ export const eggImages = [
   new ex.ImageSource(eggGreenUrl),
   new ex.ImageSource(eggGoldUrl),
 ];
+export const powerEggImage = new ex.ImageSource(powerEggUrl);

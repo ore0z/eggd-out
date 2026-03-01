@@ -4,6 +4,7 @@ import { bgMusic } from './resources';
 import { gameState } from './state';
 import { Background } from './background';
 import { Enemy } from './enemy';
+import { PowerEgg } from './power-egg';
 import { Laser } from './laser';
 import { Ship } from './ship';
 
@@ -13,6 +14,17 @@ const game = new ex.Engine({
   backgroundColor: ex.Color.Black,
   displayMode: ex.DisplayMode.FitScreen,
 });
+
+function scheduleNextPowerEgg() {
+  if (gameState.gameOver) return;
+  const delay = Math.random() * 15000 + 15000; // 15–30 seconds
+  setTimeout(() => {
+    if (gameState.gameOver) return;
+    const x = Math.random() * (800 - 92) + 46;
+    game.add(new PowerEgg(x));
+    scheduleNextPowerEgg();
+  }, delay);
+}
 
 function scheduleNextEnemy() {
   if (gameState.gameOver) return;
@@ -38,7 +50,7 @@ function startGame() {
   gameState.gameOverDiv = null;
 
   for (const actor of game.currentScene.actors) {
-    if (actor instanceof Enemy || actor instanceof Laser || actor instanceof Ship || actor instanceof Background) {
+    if (actor instanceof Enemy || actor instanceof PowerEgg || actor instanceof Laser || actor instanceof Ship || actor instanceof Background) {
       actor.kill();
     }
   }
@@ -52,6 +64,7 @@ function startGame() {
   gameState.ship = ship;
   game.add(ship);
   scheduleNextEnemy();
+  scheduleNextPowerEgg();
 }
 
 game.start(loader).then(() => {
