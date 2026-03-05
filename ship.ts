@@ -3,6 +3,7 @@ import { ship0Image, ship1Image, laserSound, bgMusic, gameOverImgUrl } from './r
 import { gameState } from './state';
 import { Laser } from './laser';
 import { Enemy } from './enemy';
+import { PowerEgg } from './power-egg';
 
 export class Ship extends ex.Actor {
   private readonly speed = 300;
@@ -32,7 +33,7 @@ export class Ship extends ex.Actor {
   }
 
   override onCollisionStart(_self: ex.Collider, other: ex.Collider) {
-    if (other.owner instanceof Enemy && !gameState.gameOver) {
+    if ((other.owner instanceof Enemy || other.owner instanceof PowerEgg) && !gameState.gameOver) {
       gameState.gameOver = true;
       this.kill();
       bgMusic.stop();
