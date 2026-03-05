@@ -4,6 +4,7 @@ import { gameState } from './state';
 import { Laser } from './laser';
 import { Enemy } from './enemy';
 import { PowerEgg } from './power-egg';
+import { buildDifficultyToggle } from './loader';
 
 export class Ship extends ex.Actor {
   private readonly speed = 300;
@@ -63,6 +64,7 @@ export class Ship extends ex.Actor {
         <div style="font: bold 28px sans-serif; color: white;">Score: ${gameState.score}</div>
         <div style="font: 22px sans-serif; color: ${isNewBest ? 'gold' : 'white'};">${isNewBest ? '★ New Best: ' : 'Best: '}${gameState.highScore}</div>
       `;
+      div.appendChild(buildDifficultyToggle());
       const btn = document.createElement('button');
       btn.textContent = 'Play Again';
       btn.tabIndex = -1;

@@ -4,6 +4,7 @@ export const gameState = {
   gameOver: false,
   score: 0,
   elapsed: 0,
+  difficulty: 'normal' as 'easy' | 'normal' | 'hard',
   highScore: parseInt(localStorage.getItem('highScore') ?? '0', 10),
   scoreLabel: null as ex.Label | null,
   highScoreLabel: null as ex.Label | null,

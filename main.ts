@@ -29,8 +29,9 @@ function scheduleNextPowerEgg() {
 
 function scheduleNextEnemy() {
   if (gameState.gameOver) return;
-  const minDelay = Math.max(150, 500 - gameState.elapsed * 10);
-  const maxDelay = Math.max(300, 2000 - gameState.elapsed * 20);
+  const rate = gameState.difficulty === 'easy' ? 0.5 : gameState.difficulty === 'hard' ? 2 : 1;
+  const minDelay = Math.max(150, 500 - gameState.elapsed * 10 * rate);
+  const maxDelay = Math.max(300, 2000 - gameState.elapsed * 20 * rate);
   const delay = Math.random() * (maxDelay - minDelay) + minDelay;
   setTimeout(() => {
     if (gameState.gameOver) return;
